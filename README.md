@@ -1,6 +1,6 @@
 # Javascript IO Meditations
 
-An exploration of the Haskell like IO Monad, in pure Javascript.
+An exploration of the Haskell IO patterns, in pure Javascript.
 
 ## What?
 
