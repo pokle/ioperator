@@ -1,6 +1,6 @@
 # Javascript IO Meditations
 
-An exploration of the Haskell like IO Monads in pure Javascript.
+An exploration of the Haskell like IO Monad, in pure Javascript.
 
 ## What?
 
@@ -20,7 +20,7 @@ Functions that perform input & output operations are usually quite hard to test.
 
 The io1.js - ioN.js files show how to perform the following imperative pseudocode using the IO pattern:
 
-    while there a messages to be read from some external queuing system:
+    while the queue has messages to read:
         read the message
         write the message to a file
         log that we wrote the message to a file
