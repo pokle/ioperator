@@ -3,7 +3,7 @@
 // This is the same as io1.js except someProcess() is much more readable
 
 const readEventFromQueue = then => ({ io: 'read-event-from-queue', then });
-const writeToDisk = (value, then) => ({ io: 'write-to-disk', then, value });
+const writeToDisk = (value, then) => ({ io: 'write-to-disk', value, then });
 const log = (m, then) => ({ io: 'log', m, then });
 const end = () => ({ io: 'END' });
 
