@@ -35,13 +35,15 @@ function isIO(value /*:mixed*/) {
 }
 
 function run(actions, value /*:mixed*/) {
-  if (!isIO(value)) return value;
+  while (true) {
+    if (!isIO(value)) return value;
 
-  const io/*:IO*/ = value;
-  const ioFunc = actions[io.io];
-  if (ioFunc == null) throw new Error('No such io' + value.io);
+    const io /*:IO*/ = value;
+    const ioFunc = actions[io.io];
+    if (ioFunc == null) throw new Error('Unknown io operation' + value.io);
 
-  return run(actions, io.then(ioFunc(io)));
+    value = io.then(ioFunc(io));
+  }
 }
 
 const events = ['first event', 'second event', 'END'];
