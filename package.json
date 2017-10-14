@@ -1,0 +1,11 @@
+{
+  "name": "js-io-meditations",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:pokle/js-io-meditations.git",
+  "author": "Tushar Pokle <tushar.pokle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "3.5.1"
+  }
+}
