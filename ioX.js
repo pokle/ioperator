@@ -29,7 +29,7 @@ function someProcess()/*:IO*/ {
 function makeSimulator()/*:Actions*/ {
   const events = ['first event', 'second event', 'END'];
   return {
-    'read-event-from-queue': () => events.shift(),
+    'read-event-from-queue': io => events.shift(),
     'write-to-disk': io => console.log('writing to disk',io),
     log: io => console.log('logging', io)
   };
