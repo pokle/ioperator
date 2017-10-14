@@ -4,13 +4,17 @@
 // - To see if I can break down the individual functions
 // - I don't like the switch statement. It could even be a hashmap
 
-/*type IO = { io: string, then: Function } */
+/*:: 
+  type Action = string;
+  type IO = { io: Action, then: Function } 
+  type Actions = { [Action]: (IO) => any }
+*/
 
 const readEventFromQueue = then => ({ io: 'read-event-from-queue', then });
 const writeToDisk = (value, then) => ({ io: 'write-to-disk', value, then });
 const log = (m, then) => ({ io: 'log', m, then });
 
-function someProcess() {
+function someProcess()/*:IO*/ {
   return readEventFromQueue(event => {
     if (event === 'END') {
       return 'The meaning of life is 41.99999999...';
@@ -22,19 +26,20 @@ function someProcess() {
   });
 }
 
-function makeSimulator(events) {
+function makeSimulator()/*:Actions*/ {
+  const events = ['first event', 'second event', 'END'];
   return {
-    'read-event-from-queue': () => events[0],
-    'write-to-disk': value => true,
-    log: message => console.log(message)
+    'read-event-from-queue': () => events.shift(),
+    'write-to-disk': io => console.log('writing to disk',io),
+    log: io => console.log('logging', io)
   };
 }
 
-function isIO(value /*:mixed*/) {
-  return !!value && typeof value === 'object' && typeof value.io === 'string';
+function isIO(value /*: IO | mixed */) {
+  return Boolean(!!value && typeof value === 'object' && typeof value.io === 'string');
 }
 
-function run(actions, value /*:mixed*/) {
+function run(actions/*:Actions*/, value /*:IO*/) {
   while (true) {
     if (!isIO(value)) return value;
 
@@ -46,6 +51,5 @@ function run(actions, value /*:mixed*/) {
   }
 }
 
-const events = ['first event', 'second event', 'END'];
-const result = run(makeSimulator(events), someProcess());
-console.log('The answer is', result);
+const result = run(makeSimulator(), someProcess());
+console.log(result);
