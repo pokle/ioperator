@@ -13,12 +13,25 @@ describe('Synchronous IO', () => {
     expect(iox.run(actions, { io: 'scrub' })).toEqual('lub-a-dub-dub');
   });
 
-  it('should return synchronous IO results', () => {
+  it('should return sync values as is', () => {
     jsc.assert(
       jsc.forall(
         'falsy | bool | number | string | array | json',
         v => iox.run({}, v) === v
       )
     );
+  });
+
+  test('synchronous inc and dec should cancel each other', () => {
+    const actions = {
+      inc: ({ value }) => value + 1,
+      dec: ({ value }) => value - 1
+    };
+
+    const process = v => {
+      return { io: 'inc', value: v, then: value => ({ io: 'dec', value }) };
+    };
+
+    jsc.assert(jsc.forall('number', v => iox.run(actions, process(v)) === v));
   });
 });
