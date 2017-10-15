@@ -1,37 +1,57 @@
 const jsc = require('jsverify');
 const iox = require('..');
 
-describe('Synchronous IO', () => {
-  it('Should fail when IO action is not known', () => {
-    expect(() =>
-      iox.run({}, { io: 'some-unknown-action', then: () => 1 })
-    ).toThrowError(/Unknown io operation: some-unknown-action/);
+const actions = {
+  'as-promised': ({ value }) => Promise.resolve(value),
+  'will-fail': io => Promise.reject(new Error('failed'))
+};
+
+describe('Async IO', () => {
+  it('should wait for async values before returning a promise', () => {
+    expect.assertions(1);
+    return iox
+      .run(actions, { io: 'as-promised', value: 99.99 })
+      .then(result => expect(result).toBe(99.99));
   });
 
-  it('Should not fail when no then is provided for io action', () => {
-    const actions = { scrub: io => 'lub-a-dub-dub' };
-    expect(iox.run(actions, { io: 'scrub' })).toEqual('lub-a-dub-dub');
+  it('async errors should be propogated', () => {
+    expect.assertions(1);
+    return iox
+      .run(actions, { io: 'will-fail', value: 99.99 })
+      .catch(e => expect(e.message).toBe('failed'));
   });
 
-  it('should return sync values as is', () => {
-    jsc.assert(
-      jsc.forall(
-        'falsy | bool | number | string | array | json',
-        v => iox.run({}, v) === v
-      )
-    );
-  });
-
-  test('synchronous inc and dec should cancel each other', () => {
+  test('asynchronous inc and dec should cancel each other', () => {
     const actions = {
-      inc: ({ value }) => value + 1,
-      dec: ({ value }) => value - 1
+      inc: ({ value }) => Promise.resolve(value + 1),
+      dec: ({ value }) => Promise.resolve(value - 1)
     };
 
     const process = v => {
       return { io: 'inc', value: v, then: value => ({ io: 'dec', value }) };
     };
 
-    jsc.assert(jsc.forall('number', v => iox.run(actions, process(v)) === v));
+    expect.assertions(1);
+    return iox
+      .run(actions, process(72))
+      .then(result => expect(result).toBe(72));
+  });
+
+  test('mixing sync and async io should result in an async result', () => {
+    const actions = {
+      incA: ({ value }) => Promise.resolve(value + 1),
+      decA: ({ value }) => Promise.resolve(value - 1),
+      incS: ({ value }) => value + 1,
+      decS: ({ value }) => value - 1
+    };
+
+    const process = v => {
+      return { io: 'incS', value: v, then: value => ({ io: 'decA', value }) };
+    };
+
+    expect.assertions(1);
+    return iox
+      .run(actions, process(72))
+      .then(result => expect(result).toBe(72));
   });
 });
