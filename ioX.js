@@ -10,8 +10,6 @@
   type Actions = { [Action]: (IO) => any }
 */
 
-const Promise = require('bluebird');
-
 const readEventFromQueue = then          => ({ io       : 'read-event-from-queue', then });
 const writeToDisk        = (value, then) => ({ io       : 'write-to-disk', value, then });
 const log                = (m, then=()   => 1) => ({ io : 'log', m, then });
@@ -47,6 +45,7 @@ function isIO(value /*: IO | mixed */) {
   );
 }
 
+module.exports.run = run;
 function run(actions /*:Actions*/, value /*:IO*/) {
   while (true) {
     if (value instanceof Promise) return value.then(v => run(actions, v));
