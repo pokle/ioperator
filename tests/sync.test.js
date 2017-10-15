@@ -5,7 +5,7 @@ describe('Synchronous IO', () => {
   it('Should fail when IO action is not known', () => {
     expect(() =>
       iox.run({}, { io: 'some-unknown-action', then: () => 1 })
-    ).toThrowError(/Unknown io operation: some-unknown-action/);
+    ).toThrowError(/Unknown io action: some-unknown-action/);
   });
 
   it('Should not fail when no then is provided for io action', () => {

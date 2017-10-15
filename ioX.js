@@ -28,7 +28,7 @@ function run(actions /*:Actions*/, value /*:IO*/) {
 
     // Execute io.action
     const action = actions[io.io];
-    if (action == null) throw new Error('Unknown io operation: ' + value.io);
+    if (action == null) throw new Error('Unknown io action: ' + value.io);
     const next = action(io);
 
     // Call io.then with the result.
