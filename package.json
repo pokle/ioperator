@@ -1,11 +1,13 @@
 {
-  "name": "js-io-meditations",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "iox",
+  "version": "0.0.1",
+  "main": "iox.js",
   "repository": "git@github.com:pokle/js-io-meditations.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "3.5.1"
+  },
+  "devDependencies": {
+    "jest": "21.2.1"
   }
 }
