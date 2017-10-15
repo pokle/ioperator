@@ -1,13 +1,26 @@
 {
   "name": "iox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "iox.js",
   "repository": "git@github.com:pokle/iox.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest --coverage"
+  },
   "dependencies": {},
   "devDependencies": {
     "jest": "21.2.1",
     "jsverify": "0.8.3"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
