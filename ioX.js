@@ -64,6 +64,6 @@ function run(actions /*:Actions*/, value /*:IO*/) {
 
 // run(makeSimulator(), writeToDisk('x', r=>r)).then(console.log)
 //run(makeSimulator(), log('⧴', _=>writeToDisk('x', r=>r))).then(console.log)
-run(makeSimulator(), log('⧴', _ => writeToDisk('x', log))).then(r => console.log('r:', r))
+// run(makeSimulator(), log('⧴', _ => writeToDisk('x', log))).then(r => console.log('r:', r))
 
 //console.log(result);

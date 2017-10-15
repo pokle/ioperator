@@ -5,9 +5,9 @@
   "repository": "git@github.com:pokle/iox.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "jest": "21.2.1"
+    "jest": "21.2.1",
+    "jsverify": "0.8.3"
   }
 }
