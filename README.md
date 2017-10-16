@@ -5,7 +5,7 @@ An exploration of the Haskell IO patterns, in pure Javascript.
 ## What?
 
 Instead of passing dependencies to your functions, instead arrange for them return:
-- A description of what IO operation they would like carried out. 
+- A description of what IO operation they would like carried out.
 - What to do after the IO operation has completed.
 
 For example:
@@ -14,11 +14,7 @@ For example:
         return { io: 'read-file', file: '/etc/hosts', then: (str) => str.toLowerCase() }
     }
 
-How do you run this?
-
-    const iox = require('iox')
-    iox.run() 
-
+So how do you run this? Check out the full example at [examples/lowercase-file.js](examples/lowercase-file.js)
 
 ## Why?
 
