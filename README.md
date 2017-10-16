@@ -43,3 +43,11 @@ The io1.js - ioN.js files show how to perform the following imperative pseudocod
         log that we wrote the message to a file
 
 This is typical of any backend system that reacts to events from a queuing system such as SNS, RabbitMQ, etc.
+
+## Release
+
+```
+npm test 
+npm version major | minor | patch...
+npm 
+```

@@ -15,25 +15,18 @@ function isIO(value /*: IO | mixed */) {
   );
 }
 
-function identity(x) {
-  return x;
-}
-
-async function run(actions /*:Actions*/, value /*:IO*/) {
-  while (true) {
-    if (!isIO(value)) return value;
-
-    const io /*:IO*/ = value;
-
-    // Execute io.action
+async function run(actions /*:Actions*/, io /*:IO*/) {
+  while (isIO(io)) {
+    // Execute the IO action
     const action = actions[io.io];
-    if (action == null) throw new Error('Unknown io action: ' + value.io);
-    const next = await action(io);
+    if (action == null) throw new Error('Unknown io action: ' + io.io);
+    const result = await action(io);
 
-    // Call io.then with the result.
-    const then = io.then || identity;
-    value = then(next);
+    // Call the callback with the result
+    io = io.then ? io.then(result) : result;
   }
+
+  return io;
 }
 
 module.exports.run = run;
