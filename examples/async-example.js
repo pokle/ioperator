@@ -11,8 +11,10 @@ const dec = (a, then) => ({ io: 'dec', a, then });
 const mulSync = (a, b, then) => ({ io: 'mulSync', a, b, then });
 const mulAsync = (a, b, then) => ({ io: 'mulAsync', a, b, then });
 
+// const process = v0 => inc(v0)
 // const process = v0 => inc(v0, v1 => inc(v1));
-const process = v0 => inc(v0, v1 => inc(v1));
+// const process = v0 => inc(v0, v1 => inc(v1, inc));
+const process = v0 => inc(v0, v1 => inc(v1, v2 => inc(v2, inc)));
 
 iox
   .run(actions, process(0))

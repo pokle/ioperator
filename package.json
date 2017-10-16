@@ -8,9 +8,7 @@
   "scripts": {
     "test": "jest --coverage"
   },
-  "dependencies": {
-    "bluebird": "^3.5.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "21.2.1",
     "jsverify": "0.8.3"
@@ -24,5 +22,8 @@
         "statements": 100
       }
     }
+  },
+  "engines": {
+    "node": ">=7.6.0"
   }
 }

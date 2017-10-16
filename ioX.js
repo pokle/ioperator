@@ -21,7 +21,6 @@ function identity(x) {
 
 async function run(actions /*:Actions*/, value /*:IO*/) {
   while (true) {
-    value = await value;
     if (!isIO(value)) return value;
 
     const io /*:IO*/ = value;
@@ -29,28 +28,12 @@ async function run(actions /*:Actions*/, value /*:IO*/) {
     // Execute io.action
     const action = actions[io.io];
     if (action == null) throw new Error('Unknown io action: ' + value.io);
-    const next = action(io);
+    const next = await action(io);
 
     // Call io.then with the result.
     const then = io.then || identity;
-    value = then(await next);
+    value = then(next);
   }
 }
 
 module.exports.run = run;
-
-const flatten = originalPromise => {
-  return new Promise((resolve, reject) => {
-    const recur = p => {
-      if (v instanceof Promise) {
-        v.then(recur);
-      } else {
-        resolve(v);
-      }
-    };
-
-    recur(originalPromise);
-  });
-};
-
-// module.exports.flatten = flatten;
