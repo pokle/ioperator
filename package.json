@@ -22,5 +22,8 @@
         "statements": 100
       }
     }
+  },
+  "engines": {
+    "node": ">=7.6.0"
   }
 }

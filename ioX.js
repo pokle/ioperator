@@ -1,8 +1,8 @@
 // @flow
 
-/*:: 
+/*::
   type Action = string;
-  type IO = { io: Action, then: Function } 
+  type IO = { io: Action, then: Function }
   type Actions = { [Action]: (IO) => any }
 */
 
@@ -19,9 +19,8 @@ function identity(x) {
   return x;
 }
 
-function run(actions /*:Actions*/, value /*:IO*/) {
+async function run(actions /*:Actions*/, value /*:IO*/) {
   while (true) {
-    if (value instanceof Promise) return value.then(v => run(actions, v));
     if (!isIO(value)) return value;
 
     const io /*:IO*/ = value;
@@ -29,15 +28,11 @@ function run(actions /*:Actions*/, value /*:IO*/) {
     // Execute io.action
     const action = actions[io.io];
     if (action == null) throw new Error('Unknown io action: ' + value.io);
-    const next = action(io);
+    const next = await action(io);
 
     // Call io.then with the result.
     const then = io.then || identity;
-    if (next instanceof Promise) {
-      return next.then(then).then(v => run(actions, v));
-    } else {
-      value = then(next);
-    }
+    value = then(next);
   }
 }
 
