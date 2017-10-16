@@ -6,7 +6,7 @@
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rm -rf lib && babel src -d lib",
     "test": "jest --coverage"
   },
   "dependencies": {},
