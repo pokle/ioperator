@@ -2,6 +2,8 @@
 
 An exploration of the Haskell IO patterns, in pure Javascript.
 
+[![Build Status](https://travis-ci.org/pokle/iox.svg?branch=master)](https://travis-ci.org/pokle/iox)
+
 ## What?
 
 Instead of passing dependencies to your functions, instead arrange for them return:
