@@ -1,6 +1,6 @@
 {
   "name": "iox",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/iox.js",
   "repository": "git@github.com:pokle/iox.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
@@ -9,8 +9,7 @@
     "build": "babel src -d lib",
     "test": "jest --coverage"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-jest": "21.2.0",
