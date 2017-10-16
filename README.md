@@ -4,6 +4,10 @@ An exploration of the Haskell IO patterns, in pure Javascript.
 
 [![Build Status](https://travis-ci.org/pokle/iox.svg?branch=master)](https://travis-ci.org/pokle/iox)
 
+Install: `npm install --save iox`
+
+Try it out live: https://runkit.com/pokle/iox-example
+
 ## What?
 
 Instead of passing dependencies to your functions, instead arrange for them return:
@@ -33,18 +37,7 @@ Dependency injection can be problematic because you have to pass your dependenci
 - From dependency injection to dependency rejection (http://blog.ploeh.dk/2017/01/27/from-dependency-injection-to-dependency-rejection/)
 
 
-## The examples
-
-The io1.js - ioN.js files show how to perform the following imperative pseudocode using the IO pattern:
-
-    while the queue has messages to read:
-        read the message
-        write the message to a file
-        log that we wrote the message to a file
-
-This is typical of any backend system that reacts to events from a queuing system such as SNS, RabbitMQ, etc.
-
-## Release
+## Release process
 
 ```
 npm test
