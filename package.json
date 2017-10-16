@@ -1,6 +1,6 @@
 {
   "name": "iox",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "lib/iox.js",
   "repository": "git@github.com:pokle/iox.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
