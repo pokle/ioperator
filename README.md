@@ -47,7 +47,8 @@ This is typical of any backend system that reacts to events from a queuing syste
 ## Release
 
 ```
-npm test 
+npm test
+npm run build 
 npm version major | minor | patch...
 git push
 npm publish
