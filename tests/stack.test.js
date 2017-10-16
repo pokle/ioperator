@@ -1,4 +1,4 @@
-const iox = require('..');
+const iox = require('../src/iox');
 
 it("Ensure that we don't use the stack to iterate", () => {
   const actions = {

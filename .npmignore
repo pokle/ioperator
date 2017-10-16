@@ -1,3 +1,5 @@
-yarn.lock
+coverage
 examples
 node_modules
+src
+yarn.lock

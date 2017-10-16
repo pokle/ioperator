@@ -1,5 +1,5 @@
 const jsc = require('jsverify');
-const iox = require('..');
+const iox = require('../src/iox');
 
 const actions = {
   'as-promised': ({ value }) => Promise.resolve(value),

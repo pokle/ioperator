@@ -1,5 +1,5 @@
 const jsc = require('jsverify');
-const iox = require('..');
+const iox = require('../src/iox');
 
 describe('Synchronous IO', () => {
   it('should return sync values as is', () => {

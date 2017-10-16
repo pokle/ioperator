@@ -1,4 +1,4 @@
-const iox = require('..');
+const iox = require('../src/iox');
 
 const actions = {
   inc: ({ a }) => Promise.resolve(a + 1),

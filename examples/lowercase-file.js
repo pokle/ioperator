@@ -1,4 +1,4 @@
-const iox = require('..');
+const iox = require('../src/iox');
 const assert = require('assert');
 const fs = require('fs');
 

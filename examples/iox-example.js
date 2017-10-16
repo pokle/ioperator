@@ -1,4 +1,4 @@
-const iox = require('..');
+const iox = require('../src/iox');
 
 const readEventFromQueue = then          => ({ io       : 'read-event-from-queue', then });
 const writeToDisk        = (value, then) => ({ io       : 'write-to-disk', value, then });

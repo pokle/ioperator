@@ -6,7 +6,7 @@
   type Actions = { [Action]: (IO) => any }
 */
 
-function isIO(value /*: IO | mixed */) {
+function isIO(value /*: mixed */) {
   return Boolean(
     value != null &&
       typeof value === 'object' &&
