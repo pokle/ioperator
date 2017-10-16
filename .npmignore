@@ -2,4 +2,7 @@ coverage
 examples
 node_modules
 src
+tests
+.vscode
+.travis.yml
 yarn.lock
