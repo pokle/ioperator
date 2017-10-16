@@ -1,3 +1,9 @@
+//
+// Queue example
+//
+// Demonstrates how you can recurse endlessly without consuming stack
+
+
 const iox = require('../src/iox');
 
 const readEventFromQueue = then          => ({ io       : 'read-event-from-queue', then });
@@ -21,14 +27,9 @@ function makeSimulator() /*:Actions*/ {
   return {
     'read-event-from-queue': io => events.shift(),
     'write-to-disk': io =>
-      new Promise((resolve, reject) => setTimeout(x => resolve('👍'), 2000)),
-    log: io => console.log('logging', io)
+      new Promise((resolve, reject) => setTimeout(x => resolve('👍'), 1000)),
+    log: io => console.log('logging', io.m)
   };
 }
 
-// run(makeSimulator(), writeToDisk('x', r=>r)).then(console.log)
-//run(makeSimulator(), log('⧴', _=>writeToDisk('x', r=>r))).then(console.log)
-
-iox.run(makeSimulator(), log('⧴', _ => writeToDisk('x', log))).then(r => console.log('r:', r))
-
-//console.log(result);
+iox.run(makeSimulator(), someProcess()).then(r => console.log('r:', r))
