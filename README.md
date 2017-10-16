@@ -49,5 +49,6 @@ This is typical of any backend system that reacts to events from a queuing syste
 ```
 npm test 
 npm version major | minor | patch...
-npm 
+git push
+npm publish
 ```
