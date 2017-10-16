@@ -13,5 +13,6 @@ it("Ensure that we don't use the stack to iterate", () => {
     }
   };
 
-  expect(iox.run(actions, someProcess())).toBe('done!');
+  expect.assertions(1);
+  return expect(iox.run(actions, someProcess())).resolves.toBe('done!');
 });

@@ -7,6 +7,15 @@ const actions = {
 };
 
 describe('Async IO', () => {
+  it('Should fail when IO action is not known', () => {
+    expect.assertions(1);
+    return expect(
+      iox.run({}, { io: 'some-unknown-action', then: () => 1 })
+    ).rejects.toMatchObject(
+      new Error('Unknown io action: some-unknown-action')
+    );
+  });
+
   it('should wait for async values before returning a promise', () => {
     expect.assertions(1);
     return iox
