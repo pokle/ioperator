@@ -4,7 +4,7 @@
 // Demonstrates how you can recurse endlessly without consuming stack
 
 
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 
 const readEventFromQueue = then          => ({ io       : 'read-event-from-queue', then });
 const writeToDisk        = (value, then) => ({ io       : 'write-to-disk', value, then });
@@ -32,4 +32,4 @@ function makeSimulator() /*:Actions*/ {
   };
 }
 
-iox.run(makeSimulator(), someProcess()).then(r => console.log('r:', r))
+ioperator.run(makeSimulator(), someProcess()).then(r => console.log('r:', r))

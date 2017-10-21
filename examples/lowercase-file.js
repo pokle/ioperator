@@ -1,4 +1,4 @@
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 const assert = require('assert');
 const fs = require('fs');
 
@@ -22,7 +22,7 @@ const simulatedActions = {
   'write-file': io => 'Wrote to ' + io.path + ': ' + io.data // Act as if file was written
 };
 
-iox
+ioperator
   .run(simulatedActions, lowerCaseFile('/etc/hosts', 'blah'))
   .then(result => assert.equal(result, 'Go check blah'));
 
@@ -34,7 +34,7 @@ const realActions = {
   'read-file': io => fs.readFileSync(io.path),
   'write-file': io => fs.writeFileSync(io.path, io.data)
 };
-iox
+ioperator
   .run(realActions, lowerCaseFile('/etc/hosts', '/tmp/hosts-lowercased'))
   .then(console.log)
   .catch(console.error);

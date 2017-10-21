@@ -1,12 +1,12 @@
-# iox
+# ioperator
 
 An exploration of the Haskell IO patterns, in pure Javascript.
 
-[![Build Status](https://travis-ci.org/pokle/iox.svg?branch=master)](https://travis-ci.org/pokle/iox)
+[![Build Status](https://travis-ci.org/pokle/ioperator.svg?branch=master)](https://travis-ci.org/pokle/ioperator)
 
-Install: `npm install --save iox`
+Install: `npm install --save ioperator`
 
-Try it out live: https://runkit.com/pokle/iox-example
+Try it out live: https://runkit.com/pokle/ioperator-example
 
 ## What?
 
@@ -28,7 +28,7 @@ Functions that perform input & output operations are usually quite hard to test.
 - You might use mocking techniques - painful.
 - You might use dependency injection (to inject mocks and genuine implementations)
 
-Dependency injection can be problematic because you have to pass your dependencies all the way through your function call hierarchy. With iox, your functions compose easier because you're never passing down dependencies.
+Dependency injection can be problematic because you have to pass your dependencies all the way through your function call hierarchy. With ioperator, your functions compose easier because you're never passing down dependencies.
 
 ## Influences
 - Haskell IO Monad

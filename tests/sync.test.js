@@ -1,11 +1,11 @@
 const jsc = require('jsverify');
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 
 describe('Synchronous IO', () => {
   it('should return sync values as is', () => {
     jsc.assert(
       jsc.forall('falsy | bool | number | string | array | json', v =>
-        iox.run({}, v).then(result => result === v)
+        ioperator.run({}, v).then(result => result === v)
       )
     );
   });
@@ -24,7 +24,7 @@ describe('Synchronous IO', () => {
     };
 
     expect.assertions(1);
-    return expect(iox.run(actions, someProcess(123))).resolves.toEqual(123);
+    return expect(ioperator.run(actions, someProcess(123))).resolves.toEqual(123);
   });
 
   test('sync io errors', () => {
@@ -41,7 +41,7 @@ describe('Synchronous IO', () => {
     });
 
     expect.assertions(1);
-    return expect(iox.run(actions, someProcess())).rejects.toMatchObject(
+    return expect(ioperator.run(actions, someProcess())).rejects.toMatchObject(
       new Error("I just can't help failing")
     );
   });

@@ -1,4 +1,4 @@
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 
 const actions = {
   inc: ({ a }) => Promise.resolve(a + 1),
@@ -17,6 +17,6 @@ const mulAsync = (a, b, then) => ({ io: 'mulAsync', a, b, then });
 // const process = v0 => inc(v0, v1 => inc(v1, inc));
 const process = v0 => inc(v0, v1 => inc(v1, v2 => inc(v2, inc)));
 
-iox.run(actions, process(0))
+ioperator.run(actions, process(0))
   .then(result => console.log('final result', result))
   .catch(err => console.error('Nope', err))

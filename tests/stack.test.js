@@ -1,4 +1,4 @@
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 
 it("Ensure that we don't use the stack to iterate", () => {
   const actions = {
@@ -14,5 +14,5 @@ it("Ensure that we don't use the stack to iterate", () => {
   };
 
   expect.assertions(1);
-  return expect(iox.run(actions, someProcess())).resolves.toBe('done!');
+  return expect(ioperator.run(actions, someProcess())).resolves.toBe('done!');
 });
