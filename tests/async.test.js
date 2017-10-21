@@ -1,5 +1,5 @@
 const jsc = require('jsverify');
-const iox = require('../src/iox');
+const ioperator = require('../src/ioperator');
 
 const actions = {
   'as-promised': ({ value }) => Promise.resolve(value),
@@ -10,7 +10,7 @@ describe('Async IO', () => {
   it('Should fail when chained IO action is not known', () => {
     expect.assertions(1);
     return expect(
-      iox.run(actions, {
+      ioperator.run(actions, {
         io: 'as-promised',
         value: { io: 'unknown-action' },
         then: x => x
@@ -20,21 +20,21 @@ describe('Async IO', () => {
 
   it("Should resolve to the action's result when no 'then' callback is provided", () => {
     const actions = { scrub: io => 'lub-a-dub-dub' };
-    return expect(iox.run(actions, { io: 'scrub' })).resolves.toBe(
+    return expect(ioperator.run(actions, { io: 'scrub' })).resolves.toBe(
       'lub-a-dub-dub'
     );
   });
 
   it('should wait for async values before returning a promise', () => {
     expect.assertions(1);
-    return iox
+    return ioperator
       .run(actions, { io: 'as-promised', value: 99.99 })
       .then(result => expect(result).toBe(99.99));
   });
 
   it('async errors should be propogated', () => {
     expect.assertions(1);
-    return iox
+    return ioperator
       .run(actions, { io: 'will-fail', value: 99.99 })
       .catch(e => expect(e.message).toBe('failed'));
   });
@@ -50,7 +50,7 @@ describe('Async IO', () => {
     };
 
     expect.assertions(1);
-    return iox
+    return ioperator
       .run(actions, process(72))
       .then(result => expect(result).toBe(72));
   });
@@ -78,6 +78,6 @@ describe('Async IO', () => {
       );
 
     expect.assertions(1);
-    return iox.run(actions, process(0)).then(result => expect(result).toBe(99));
+    return ioperator.run(actions, process(0)).then(result => expect(result).toBe(99));
   });
 });
