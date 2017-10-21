@@ -1,6 +1,6 @@
 {
   "name": "ioperator",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "lib/ioperator.js",
   "repository": "git@github.com:pokle/ioperator.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
