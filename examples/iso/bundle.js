@@ -1,7 +1,5 @@
 'use strict';
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 // @flow
 
 /*::
@@ -14,29 +12,35 @@ function isIO(value /*: mixed */) {
   return Boolean(value != null && typeof value === 'object' && typeof value.io === 'string' && (!value.then || typeof value.then === 'function'));
 }
 
-let run = (() => {
-  var _ref = _asyncToGenerator(function* (actions /*:Actions*/, io /*:IO*/) {
-    if (!isIO(io)) {
-      throw new Error('Not an IO: ' + io);
+function run_(actions, io) {
+  // Execute the IO action
+  const action = actions[io.io];
+  if (action == null) return Promise.reject(new Error('Unknown io action: ' + io.io));
+
+  return Promise.resolve(action(io)).then(result => {
+    // Call the callback with the result of the action
+    const nextIO = io.then ? io.then(result) : result;
+
+    // loop
+    if (isIO(nextIO)) {
+      return run_(actions, nextIO);
+    } else {
+      return nextIO; // final result
     }
-
-    while (isIO(io)) {
-      // Execute the IO action
-      const action = actions[io.io];
-      if (action == null) throw new Error('Unknown io action: ' + io.io);
-      const result = yield action(io);
-
-      // Call the callback with the result
-      io = io.then ? io.then(result) : result;
-    }
-
-    return io;
   });
+}
 
-  return function run(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-})();
+var run = function run(actions /*:Actions*/, io /*:IO*/) {
+  if (!actions) {
+    throw new Error('ioperator.run called without actions');
+  }
+
+  if (!isIO(io)) {
+    throw new Error('ioperator.run called with a non io-action: ' + io);
+  }
+
+  return run_(actions, io);
+};
 
 // A pure isomorphic application
 var React = require('react');
@@ -48,7 +52,6 @@ var Home = function Home() {
   return React.createElement(
     'div',
     null,
-    ' ',
     'Hey, you should go ',
     React.createElement(
       'a',

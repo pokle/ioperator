@@ -1,6 +1,6 @@
 // import React from 'react'
 // import ReactDOM from 'react-dom'
-import { run } from 'ioperator/src'
+import { run } from 'ioperator'
 import app from'./app'
 
 const actions = {
