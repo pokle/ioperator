@@ -15,7 +15,7 @@ export function isIO(value /*: mixed */) {
   );
 }
 
-function runLoop(actions, io) {
+function run_(actions, io) {
   // Execute the IO action
   const action = actions[io.io];
   if (action == null)
@@ -27,7 +27,7 @@ function runLoop(actions, io) {
 
     // loop
     if (isIO(nextIO)) {
-      return runLoop(actions, nextIO);
+      return run_(actions, nextIO);
     } else {
       return nextIO; // final result
     }
@@ -43,5 +43,5 @@ export function run(actions /*:Actions*/, io /*:IO*/) {
     throw new Error('Not an IO: ' + io);
   }
 
-  return runLoop(actions, io);
+  return run_(actions, io);
 }
