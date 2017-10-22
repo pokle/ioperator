@@ -2,7 +2,7 @@ const React = require('react')
 const ReactDOMServer = require('react-dom/server');
 const ioperator = require('ioperator');
 const express = require('express');
-const app = require('./app');
+import app from '../pure/app'
 
 const actions = {
   routes: ({ routes }) => {

@@ -1,5 +1,6 @@
 // A pure isomorphic application
-const React = require('react');
+import React from 'react'
+
 const routes = routes => ({ io: 'routes', routes });
 
 const Home = () => (
