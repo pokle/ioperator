@@ -16,6 +16,10 @@ function isIO(value /*: mixed */) {
 }
 
 async function run(actions /*:Actions*/, io /*:IO*/) {
+  if (!isIO(io)) {
+    throw new Error('Not an IO: ' + io);
+  }
+
   while (isIO(io)) {
     // Execute the IO action
     const action = actions[io.io];
