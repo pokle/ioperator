@@ -1,3 +1,5 @@
+const React = require('react')
+const ReactDOMServer = require('react-dom/server');
 const ioperator = require('ioperator');
 const express = require('express');
 const app = require('./app');
@@ -7,7 +9,7 @@ const actions = {
     const expressApp = express();
     routes.forEach(({ path, then }) => {
       expressApp.get(path, (req, res) => {
-        res.send(then());
+        res.send(ReactDOMServer.renderToString(then()));
       });
     });
 

@@ -1,19 +1,25 @@
 // A pure isomorphic application
+const React = require('react')
+const routes = routes => ({ io: 'routes', routes });
 
-const routes = (routes) => ({ io: 'routes', routes })
+const Hello = ({ name }) => <h1>Hello {name}</h1>;
 
 function app() /*:IO*/ {
   return routes([
     {
       path: '/',
       then() {
-        return "Hey, you should go <a href='/hey'>here</a>";
+        return (
+          <div>
+            Hey, you should go <a href="/hey">here</a>
+          </div>
+        );
       }
     },
     {
       path: '/hey',
       then() {
-        return 'Hey there';
+        return <Hello name="there" />;
       }
     }
   ]);
