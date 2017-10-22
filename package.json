@@ -1,20 +1,22 @@
 {
   "name": "ioperator",
   "version": "2.0.0",
-  "main": "lib/ioperator.js",
+  "main": "lib",
   "repository": "git@github.com:pokle/ioperator.git",
   "author": "Tushar Pokle <tushar.pokle@gmail.com>",
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf coverage lib",
     "build": "rm -rf lib && babel src -d lib",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "bench": "node tests/bench.js"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-jest": "21.2.0",
     "babel-preset-env": "1.6.0",
+    "benchmark": "2.1.4",
     "jest-cli": "21.2.1",
     "jsverify": "0.8.3"
   },
