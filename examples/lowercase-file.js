@@ -1,4 +1,4 @@
-const ioperator = require('../src/ioperator');
+const ioperator = require('..');
 const assert = require('assert');
 const fs = require('fs');
 
