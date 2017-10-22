@@ -14,7 +14,7 @@ const actions = {
     });
 
     expressApp.listen(3000, function() {
-      console.log('IOperator example/iso Ready. Try http://localhost:3000/');
+      console.log('IOperator example iso ready. Try http://localhost:3000/');
     });
 
     return expressApp;

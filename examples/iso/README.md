@@ -9,8 +9,9 @@ The key idea is to keep the application pure - in this case, agnostic of client 
 
 # Starting the server
 
-    npm install
-    npm start
+    make start
 
 # Starting the client
 
+    make
+    open dist/index.html
