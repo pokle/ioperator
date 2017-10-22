@@ -1,4 +1,4 @@
-import { run } from '..';
+const { run } = require('..');
 
 test('is an error to call run() with a non io value', () => {
   expect.assertions(1);

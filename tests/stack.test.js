@@ -1,4 +1,4 @@
-import { run } from '..';
+const { run } = require('..');
 
 it("Ensure that we don't use the stack to iterate", () => {
   const actions = {

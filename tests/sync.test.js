@@ -1,4 +1,4 @@
-import { run } from '..';
+const { run } = require('..');
 
 describe('Synchronous IO', () => {
 

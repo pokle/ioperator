@@ -1,4 +1,4 @@
-import { run } from '..';
+const { run } = require('..');
 
 const actions = {
   'as-promised': ({ value }) => Promise.resolve(value),
