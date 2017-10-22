@@ -1,14 +1,6 @@
-const jsc = require('jsverify');
-const ioperator = require('../src/ioperator');
+import { run } from '../src'
 
 describe('Synchronous IO', () => {
-  it('should return sync values as is', () => {
-    jsc.assert(
-      jsc.forall('falsy | bool | number | string | array | json', v =>
-        ioperator.run({}, v).then(result => result === v)
-      )
-    );
-  });
 
   test('synchronous inc and dec should cancel each other when chained', () => {
     const actions = {
@@ -24,7 +16,7 @@ describe('Synchronous IO', () => {
     };
 
     expect.assertions(1);
-    return expect(ioperator.run(actions, someProcess(123))).resolves.toEqual(123);
+    return expect(run(actions, someProcess(123))).resolves.toEqual(123);
   });
 
   test('sync io errors', () => {
@@ -41,7 +33,7 @@ describe('Synchronous IO', () => {
     });
 
     expect.assertions(1);
-    return expect(ioperator.run(actions, someProcess())).rejects.toMatchObject(
+    return expect(run(actions, someProcess())).rejects.toMatchObject(
       new Error("I just can't help failing")
     );
   });

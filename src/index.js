@@ -6,7 +6,7 @@
   type Actions = { [Action]: (IO) => any }
 */
 
-function isIO(value /*: mixed */) {
+export function isIO(value /*: mixed */) {
   return Boolean(
     value != null &&
       typeof value === 'object' &&
@@ -15,7 +15,7 @@ function isIO(value /*: mixed */) {
   );
 }
 
-async function run(actions /*:Actions*/, io /*:IO*/) {
+export async function run(actions /*:Actions*/, io /*:IO*/) {
   if (!isIO(io)) {
     throw new Error('Not an IO: ' + io);
   }
@@ -32,5 +32,3 @@ async function run(actions /*:Actions*/, io /*:IO*/) {
 
   return io;
 }
-
-module.exports.run = run;
