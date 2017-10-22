@@ -1,4 +1,4 @@
-const ioperator = require('../src/ioperator');
+const ioperator = require('..');
 
 const actions = {
   inc: ({ a }) => Promise.resolve(a + 1),

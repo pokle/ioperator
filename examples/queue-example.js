@@ -4,7 +4,7 @@
 // Demonstrates how you can recurse endlessly without consuming stack
 
 
-const ioperator = require('../src/ioperator');
+const ioperator = require('..');
 
 const readEventFromQueue = then          => ({ io       : 'read-event-from-queue', then });
 const writeToDisk        = (value, then) => ({ io       : 'write-to-disk', value, then });

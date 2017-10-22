@@ -36,11 +36,11 @@ function run_(actions, io) {
 
 module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
   if (!actions) {
-    throw new Error('Missing actions');
+    throw new Error('ioperator.run called without actions');
   }
 
   if (!isIO(io)) {
-    throw new Error('Not an IO: ' + io);
+    throw new Error('ioperator.run called with a non io-action: ' + io);
   }
 
   return run_(actions, io);

@@ -41,7 +41,6 @@ Dependency injection can be problematic because you have to pass your dependenci
 
 ```
 npm test
-npm run build 
 npm version major | minor | patch...
 git push
 npm publish

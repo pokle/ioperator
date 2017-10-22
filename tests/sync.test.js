@@ -1,4 +1,4 @@
-import { run } from '../src'
+import { run } from '..';
 
 describe('Synchronous IO', () => {
 

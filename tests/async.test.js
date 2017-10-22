@@ -1,4 +1,4 @@
-import { run } from '../src';
+import { run } from '..';
 
 const actions = {
   'as-promised': ({ value }) => Promise.resolve(value),

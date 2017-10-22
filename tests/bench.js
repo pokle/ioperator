@@ -1,6 +1,6 @@
 var Benchmark = require('benchmark');
 var suite = new Benchmark.Suite();
-var { run } = require('../lib');
+var { run } = require('..');
 
 const actions = {
   single(io) {
