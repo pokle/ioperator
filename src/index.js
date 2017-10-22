@@ -6,7 +6,7 @@
   type Actions = { [Action]: (IO) => any }
 */
 
-export function isIO(value /*: mixed */) {
+function isIO(value /*: mixed */) {
   return Boolean(
     value != null &&
       typeof value === 'object' &&
@@ -34,7 +34,7 @@ function run_(actions, io) {
   });
 }
 
-export function run(actions /*:Actions*/, io /*:IO*/) {
+module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
   if (!actions) {
     throw new Error('Missing actions');
   }
