@@ -10,8 +10,7 @@
     "test": "jest --coverage",
     "bench": "node tests/bench.js"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "benchmark": "2.1.4",
     "jest-cli": "21.2.1"
