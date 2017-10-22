@@ -1,3 +1,14 @@
 {
-  "presets": ["react"]
+  "presets": [
+    [
+      "latest",
+      {
+        "es2015": {
+          "modules": false
+        }
+      }
+    ],
+    "react"    
+  ],
+  "plugins": ["external-helpers"]
 }

@@ -12,10 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.16.2",
-    "ioperator": "../.."
+    "ioperator": "../..",
+    "react": "16.0.0",
+    "react-router-dom": "4.2.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
-    "babel-preset-react": "6.24.1"
+    "babel-plugin-external-helpers": "6.22.0",
+    "babel-preset-latest": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "rollup-plugin-babel": "3.0.2",
+    "rollup-plugin-node-resolve": "3.0.0"
   }
 }

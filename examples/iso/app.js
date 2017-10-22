@@ -12,8 +12,7 @@ const Home = () => (
 const Hello = ({ name }) => <h1>Hello {name}</h1>;
 const Hey = () => <Hello name="there" />;
 
-function app() /*:IO*/ {
+export default function app() /*:IO*/ {
   return routes([{ path: '/', then: Home }, { path: '/hey', then: Hey }]);
 }
 
-module.exports = app;
