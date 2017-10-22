@@ -15,20 +15,33 @@ export function isIO(value /*: mixed */) {
   );
 }
 
-export async function run(actions /*:Actions*/, io /*:IO*/) {
+function runLoop(actions, io) {
+  // Execute the IO action
+  const action = actions[io.io];
+  if (action == null)
+    return Promise.reject(new Error('Unknown io action: ' + io.io));
+
+  return Promise.resolve(action(io)).then(result => {
+    // Call the callback with the result of the action
+    const nextIO = io.then ? io.then(result) : result;
+
+    // loop
+    if (isIO(nextIO)) {
+      return runLoop(actions, nextIO);
+    } else {
+      return nextIO; // final result
+    }
+  });
+}
+
+export function run(actions /*:Actions*/, io /*:IO*/) {
+  if (!actions) {
+    throw new Error('Missing actions');
+  }
+
   if (!isIO(io)) {
     throw new Error('Not an IO: ' + io);
   }
 
-  while (isIO(io)) {
-    // Execute the IO action
-    const action = actions[io.io];
-    if (action == null) throw new Error('Unknown io action: ' + io.io);
-    const result = await action(io);
-
-    // Call the callback with the result
-    io = io.then ? io.then(result) : result;
-  }
-
-  return io;
+  return runLoop(actions, io);
 }
