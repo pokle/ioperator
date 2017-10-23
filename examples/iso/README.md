@@ -1,11 +1,15 @@
 # iso example
 
-This is an example of one way to write an isomorphic react app with IOperator.
+Here's a way to write isomorphic react apps with IOperator.
 
 The key idea is to keep the application pure - in this case, agnostic of client or server concerns.
 
-- Business logic belongs in `app.js`
-- Infrastructure code belongs in `server.js` and `client.js`
+- Business concerns belong in `app.js`
+    - App logic devoid of infrastructure concerns
+    - Pure react view components
+- Infrastructure concerns devoid of business logic belong in:
+    - `server.js` for the HTTP-server (using expressjs)
+    - `client.js` for the browser javascript single page app
 
 # Starting the server
 
