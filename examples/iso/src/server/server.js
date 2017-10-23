@@ -1,15 +1,22 @@
-const React = require('react')
+const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const ioperator = require('ioperator');
+const { run } = require('ioperator');
 const express = require('express');
-import app from '../pure/app'
+import app from '../pure/app';
 
 const actions = {
+
+  just: ({value}) => value,
+
+  withTime: () => Date().toString(),
+
   routes: ({ routes }) => {
     const expressApp = express();
-    routes.forEach(({ path, then }) => {
+    routes.forEach(({ path, routeIo }) => {
       expressApp.get(path, (req, res) => {
-        res.send(ReactDOMServer.renderToString(then()));
+        run(actions, routeIo).then(comp =>
+          res.send(ReactDOMServer.renderToString(comp))
+        );
       });
     });
 
@@ -21,4 +28,4 @@ const actions = {
   }
 };
 
-ioperator.run(actions, app());
+run(actions, app());
