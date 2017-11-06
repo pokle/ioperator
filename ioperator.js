@@ -37,13 +37,13 @@ function run_(actions, io) {
   }
 }
 
-module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
+module.exports.run = function run(actions /*:Actions*/, io /*:IO*/)/*:Promise<mixed>*/ {
   if (!actions) {
     throw new Error('ioperator.run called without actions');
   }
 
   if (!isIO(io)) {
-    throw new Error('ioperator.run called with a non io-action: ' + io);
+    throw new Error('ioperator.run called with a non io-action: ' + String(io));
   }
 
   return run_(actions, io);
