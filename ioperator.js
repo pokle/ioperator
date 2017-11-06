@@ -2,7 +2,7 @@
 
 /*::
   type Action = string;
-  type IO = { io: Action, then: Function }
+  type IO = { io: Action, then?: Function }
   type Actions = { [Action]: (IO) => any }
 */
 
