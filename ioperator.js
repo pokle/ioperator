@@ -21,17 +21,20 @@ function run_(actions, io) {
   if (action == null)
     return Promise.reject(new Error('Unknown io action: ' + io.io));
 
-  return Promise.resolve(action(io)).then(result => {
-    // Call the callback with the result of the action
-    const nextIO = io.then ? io.then(result) : result;
+  try {
+    return Promise.resolve(action(io)).then(result => {
+      // Call the callback with the result of the action
+      const nextIO = io.then ? io.then(result) : result;
 
-    // loop
-    if (isIO(nextIO)) {
-      return run_(actions, nextIO);
-    } else {
-      return nextIO; // final result
-    }
-  });
+      if (isIO(nextIO)) {
+        return run_(actions, nextIO);
+      } else {
+        return nextIO; // final result
+      }
+    });
+  } catch (e) {
+    return Promise.reject(e);
+  }
 }
 
 module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
@@ -44,4 +47,4 @@ module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
   }
 
   return run_(actions, io);
-}
+};
