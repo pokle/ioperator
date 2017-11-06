@@ -1,14 +1,19 @@
 # ioperator
 
-An exploration of the Haskell IO patterns, in pure Javascript.
+Helps separate your logic from your Input Output operations.
+
+Examples of IO operations are HTTP requests, file system requests, database requests, and generally any functions that have side effects. Functions with side effects are hard to test because they are usually not repeatable.
+
+Keeping your logic pure (free of side-effects) makes it much easier to test, and more generally much easier ot reason about.
+
+ioperater is heavily influenced by Haskell's treatment of IO - Your pure functions describe what needs to be done by returning an IO value. They never perform IO by themselves.
 
 [![Build Status](https://travis-ci.org/pokle/ioperator.svg?branch=master)](https://travis-ci.org/pokle/ioperator)
 
 Install: `npm install --save ioperator`
 
 Try it out live: https://runkit.com/pokle/ioperator-example
-
-## What?
+## Quick example
 
 Instead of passing dependencies to your functions, instead arrange for them return:
 - A description of what IO operation they would like carried out.
