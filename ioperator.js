@@ -1,12 +1,11 @@
-// @flow
-
-/*::
+/* @flow */
+/* ::
   type Action = string;
-  type IO = { io: Action, then: Function }
-  type Actions = { [Action]: (IO) => any }
+  type IO = { io: Action, then?: Function };
+  type Actions = { [Action]: (any) => any };
 */
 
-function isIO(value /*: mixed */) {
+function isIO(value) {
   return Boolean(
     value != null &&
       typeof value === 'object' &&
@@ -26,8 +25,9 @@ function run_(actions, io) {
       // Call the callback with the result of the action
       const nextIO = io.then ? io.then(result) : result;
 
+      // Work out what's next
       if (isIO(nextIO)) {
-        return run_(actions, nextIO);
+        return run_(actions, nextIO); // Process more IO
       } else {
         return nextIO; // final result
       }
@@ -37,14 +37,18 @@ function run_(actions, io) {
   }
 }
 
-module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) {
-  if (!actions) {
-    throw new Error('ioperator.run called without actions');
-  }
+module.exports = {
+  run: function(actions /*:Actions*/, io /*:IO*/) /*:Promise<*>*/ {
+    if (!actions) {
+      throw new Error('ioperator.run called without actions');
+    }
 
-  if (!isIO(io)) {
-    throw new Error('ioperator.run called with a non io-action: ' + io);
-  }
+    if (!isIO(io)) {
+      throw new Error(
+        'ioperator.run called with a non io-action: ' + String(io)
+      );
+    }
 
-  return run_(actions, io);
+    return run_(actions, io);
+  }
 };
