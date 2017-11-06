@@ -2,7 +2,7 @@
 
 Helps separate your logic from your Input Output operations.
 
-Examples of IO operations are HTTP requests, file system requests, database requests, and generally any functions that have side effects. Functions with side effects are hard to test because they are difficult to make repeatable.
+Examples of IO operations are HTTP requests, file system requests, database requests, and generally any functions that have side effects. Functions with side effects are hard to test because they are usually not repeatable.
 
 Keeping your logic pure (free of side-effects) makes it much easier to test, and more generally much easier ot reason about.
 
