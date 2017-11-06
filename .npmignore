@@ -6,3 +6,4 @@ tests
 .vscode
 .travis.yml
 yarn.lock
+package-lock.json
