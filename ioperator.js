@@ -25,8 +25,9 @@ function run_(actions, io) {
       // Call the callback with the result of the action
       const nextIO = io.then ? io.then(result) : result;
 
+      // Work out what's next
       if (isIO(nextIO)) {
-        return run_(actions, nextIO);
+        return run_(actions, nextIO); // Process more IO
       } else {
         return nextIO; // final result
       }
