@@ -17,7 +17,8 @@ function isIO(value) {
 function run_(actions, io) {
   // Execute the IO action
   const action = actions[io.io];
-  if (action == null) Promise.reject(new Error('Unknown io action: ' + io.io));
+  if (action == null)
+    return Promise.reject(new Error('Unknown io action: ' + io.io));
 
   try {
     return Promise.resolve(action(io)).then(result => {
@@ -35,14 +36,18 @@ function run_(actions, io) {
   }
 }
 
-module.exports.run = function( actions /*:Actions*/, io /*:IO*/ ) /*:Promise<*>*/ {
-  if (!actions) {
-    throw new Error('ioperator.run called without actions');
-  }
+module.exports = {
+  run: function(actions /*:Actions*/, io /*:IO*/) /*:Promise<*>*/ {
+    if (!actions) {
+      throw new Error('ioperator.run called without actions');
+    }
 
-  if (!isIO(io)) {
-    throw new Error('ioperator.run called with a non io-action: ' + String(io));
-  }
+    if (!isIO(io)) {
+      throw new Error(
+        'ioperator.run called with a non io-action: ' + String(io)
+      );
+    }
 
-  return run_(actions, io);
+    return run_(actions, io);
+  }
 };
