@@ -1,12 +1,11 @@
-// @flow
-
-/*::
+/* @flow */
+/* ::
   type Action = string;
-  type IO = { io: Action, then?: Function }
-  type Actions = { [Action]: (IO) => any }
+  type IO = { io: Action, then?: Function };
+  type Actions = { [Action]: (IO) => * };
 */
 
-function isIO(value /*: mixed */) {
+function isIO(value) {
   return Boolean(
     value != null &&
       typeof value === 'object' &&
@@ -18,8 +17,7 @@ function isIO(value /*: mixed */) {
 function run_(actions, io) {
   // Execute the IO action
   const action = actions[io.io];
-  if (action == null)
-    return Promise.reject(new Error('Unknown io action: ' + io.io));
+  if (action == null) Promise.reject(new Error('Unknown io action: ' + io.io));
 
   try {
     return Promise.resolve(action(io)).then(result => {
@@ -37,7 +35,7 @@ function run_(actions, io) {
   }
 }
 
-module.exports.run = function run(actions /*:Actions*/, io /*:IO*/) /*:Promise<*>*/ {
+module.exports.run = function( actions /*:Actions*/, io /*:IO*/ ) /*:Promise<*>*/ {
   if (!actions) {
     throw new Error('ioperator.run called without actions');
   }
